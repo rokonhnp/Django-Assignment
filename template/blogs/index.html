@@ -1,0 +1,120 @@
+{% extends 'partial/base.html' %}
+{% block head %}
+<title>Cultivate Your Passion for Gardening with Expert Tips and Advice</title>
+{% endblock head %}
+{% block content %}
+
+{% load static %}
+
+        <section class="section first-section">
+            <div class="container-fluid">
+            <img src="" alt="" >
+            </div>
+        </section>
+
+        <section class="section wb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                        <div class="page-wrapper">
+                            <div class="blog-list clearfix">
+                             {% for post in posts %}
+
+                                <div class="blog-box row">
+                                    <div class="col-md-4">
+                                        <div class="post-media">
+                                            <a href="{% url 'single' post.slug %}" title="">
+                                                <img src="{{post.featured_image.url}}" alt="" class="img-fluid">
+                                                <div class="hovereffect"></div>
+                                            </a>
+                                        </div><!-- end media -->
+                                    </div><!-- end col -->
+
+                                    <div class="blog-meta big-meta col-md-8">
+                                        <span class="bg-aqua"><a href="garden-category.html" title="">Indoor</a></span>
+                                        <h4><a href="{% url 'single' post.slug %}" title="">{{post.title}}</a></h4>
+                                        <p>{{post.content | truncatewords:40 |safe}}</p>
+                                        <small><a title="">{{post.created}}</a></small>
+                                        
+                                    </div><!-- end meta -->
+                                </div><!-- end blog-box -->
+
+                                <hr class="invis">
+                             {% endfor %}
+
+
+                            </div><!-- end blog-list -->
+                        </div><!-- end page-wrapper -->
+
+                        <hr class="invis">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <nav aria-label="Page navigation">
+                                  <!--pagination-->
+
+                                  <ul class="pagination justify-content-start">
+                                    {% if posts.has_previous %}
+                                        <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">Previous</a></li>
+                                    {% else %}
+                                        <li class="page-item disabled"><span class="page-link">Previous</span></li>
+                                    {% endif %}
+                                    
+                                    {% for num in posts.paginator.page_range %}
+                                        {% if num == posts.number %}
+                                            <li class="page-item active" aria-current="page"><span class="page-link">{{ num }}</span></li>
+                                        {% else %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    
+                                    {% if posts.has_next %}
+                                        <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">Next</a></li>
+                                    {% else %}
+                                        <li class="page-item disabled"><span class="page-link">Next</span></li>
+                                    {% endif %}
+                                </ul>
+                                <!--End pagination-->
+                                </nav>
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+                    </div><!-- end col -->
+
+                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sidebar">
+                            <div class="widget">
+                                <h2 class="widget-title">Search</h2>
+                                <form class="form-inline search-form">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Search on the site">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                </form>
+                            </div><!-- end widget -->
+
+                            <div class="widget">
+                                <h2 class="widget-title">Recent Posts</h2>
+                                <div class="blog-list-widget">
+                                    <div class="list-group">
+
+                                        {% for post in posts %}
+                                        <a href="{% url 'single' post.slug %}" class="list-group-item list-group-item-action flex-column align-items-start">
+                                            <div class="w-100 justify-content-between">
+                                                <img src="{{post.featured_image.url}}" alt="" class="img-fluid float-left">
+                                                <h5 class="mb-1">{{post.title}}</h5>
+                                                
+                                            </div>
+                                        </a>
+                                        {% endfor %}
+
+                                    </div>
+                                </div><!-- end blog-list -->
+                            </div><!-- end widget -->
+
+                        </div><!-- end sidebar -->
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section>
+
+{% endblock content %}     

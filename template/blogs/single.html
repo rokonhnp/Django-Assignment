@@ -1,0 +1,170 @@
+{% extends 'partial/base.html' %}
+<!--For show meta title & description-->
+{% block head %}
+    <title class="">{% if post.meta_title %}{{post.meta_title}} {% else %} {{post.title}}
+      {% endif %}</title>
+
+      <meta name="description" content="{% if post.meta_description %}{{post.meta_description}} 
+      {% else %} {{post.content | truncatechars:180}}{% endif %}" />
+{% endblock head %}
+
+{% block content %}
+
+        <div class="page-title wb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <h2><i class="fa fa-leaf bg-green"></i>{{post.category.title}}</h2>
+                    </div><!-- end col -->
+                    <div class="col-lg-4 col-md-4 col-sm-12 hidden-xs-down hidden-sm-down">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                            <li class="breadcrumb-item active"><a href="{% url 'single' post.category.slug %}">{{post.category.title}}</a></li>
+                        </ol>
+                    </div><!-- end col -->                    
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end page-title -->
+
+        <section class="section wb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                        <div class="page-wrapper">
+                            <div class="blog-title-area">
+                                <span class="color-green"><a href="garden-category.html" title="">{{post.category.title}}</a></span>
+
+                                <h3>{{post.title}}</h3>
+
+                                <div class="blog-meta big-meta">
+                                    <small><a href="garden-single.html" title="">Published on {{post.created}}</a></small>
+                                </div><!-- end meta -->
+
+                                <div class="post-sharing">
+                                    <ul class="list-inline">
+                                        <li><a href="#" class="fb-button btn btn-primary"><i class="fa fa-facebook"></i> <span class="down-mobile">Share on Facebook</span></a></li>
+                                        <li><a href="#" class="tw-button btn btn-primary"><i class="fa fa-twitter"></i> <span class="down-mobile">Tweet on Twitter</span></a></li>
+                                        <li><a href="#" class="gp-button btn btn-primary"><i class="fa fa-google-plus"></i></a></li>
+                                    </ul>
+                                </div><!-- end post-sharing -->
+                            </div><!-- end title -->
+
+                            <div class="single-post-media">
+                                <img src="{{post.featured_image.url}}" alt="" class="img-fluid">
+                            </div><!-- end media -->
+
+                            <div class="blog-content">  
+                                <p>{{post.content | safe}}</p>
+                            </div><!-- end content -->
+
+                            <div class="blog-title-area">
+
+                                <div class="post-sharing">
+                                    <ul class="list-inline">
+                                        <li><a href="#" class="fb-button btn btn-primary"><i class="fa fa-facebook"></i> <span class="down-mobile">Share on Facebook</span></a></li>
+                                        <li><a href="#" class="tw-button btn btn-primary"><i class="fa fa-twitter"></i> <span class="down-mobile">Tweet on Twitter</span></a></li>
+                                        <li><a href="#" class="gp-button btn btn-primary"><i class="fa fa-google-plus"></i></a></li>
+                                    </ul>
+                                </div><!-- end post-sharing -->
+                            </div><!-- end title -->
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="banner-spot clearfix">
+                                        <div class="banner-img">
+                                            <img src="upload/banner_01.jpg" alt="" class="img-fluid">
+                                        </div><!-- end banner-img -->
+                                    </div><!-- end banner -->
+                                </div><!-- end col -->
+                            </div><!-- end row -->
+
+                            <hr class="invis1">
+
+
+                            <div class="custombox clearfix">
+                                <h4 class="small-title">3 Comments</h4>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="comments-list">
+                                            <div class="media">
+                                                <a class="media-left" href="#">
+                                                    <img src="upload/author.jpg" alt="" class="rounded-circle">
+                                                </a>
+                                                <div class="media-body">
+                                                    <h4 class="media-heading user_name">Amanda Martines <small>5 days ago</small></h4>
+                                                    <p>Exercitation photo booth stumptown tote bag Banksy, elit small batch freegan sed. Craft beer elit seitan exercitation, photo booth et 8-bit kale chips proident chillwave deep v laborum. Aliquip veniam delectus, Marfa eiusmod Pinterest in do umami readymade swag. Selfies iPhone Kickstarter, drinking vinegar jean.</p>
+                                                    <a href="#" class="btn btn-primary btn-sm">Reply</a>
+                                                </div>
+                                            </div>
+                                            <div class="media last-child">
+                                                <a class="media-left" href="#">
+                                                    <img src="upload/author_02.jpg" alt="" class="rounded-circle">
+                                                </a>
+                                                <div class="media-body">
+
+                                                    <h4 class="media-heading user_name">Marie Johnson <small>5 days ago</small></h4>
+                                                    <p>Kickstarter seitan retro. Drinking vinegar stumptown yr pop-up artisan sunt. Deep v cliche lomo biodiesel Neutra selfies. Shorts fixie consequat flexitarian four loko tempor duis single-origin coffee. Banksy, elit small.</p>
+
+                                                    <a href="#" class="btn btn-primary btn-sm">Reply</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- end col -->
+                                </div><!-- end row -->
+                            </div><!-- end custom-box -->
+
+                            <hr class="invis1">
+
+                            <div class="custombox clearfix">
+                                <h4 class="small-title">Leave a Reply</h4>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <form class="form-wrapper">
+                                            <input type="text" class="form-control" placeholder="Your name">
+                                            <input type="text" class="form-control" placeholder="Email address">
+                                            <input type="text" class="form-control" placeholder="Website">
+                                            <textarea class="form-control" placeholder="Your comment"></textarea>
+                                            <button type="submit" class="btn btn-primary">Submit Comment</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- end page-wrapper -->
+                    </div><!-- end col -->
+
+<div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sidebar">
+                            <div class="widget">
+                                <h2 class="widget-title">Search</h2>
+                                <form class="form-inline search-form">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Search on the site">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                </form>
+                            </div><!-- end widget -->
+
+                            <div class="widget">
+                                <h2 class="widget-title">Recent Posts</h2>
+                                <div class="blog-list-widget">
+                                    <div class="list-group">
+                                    {% for recent in recent_posts %}
+                                        <a href="" class="list-group-item list-group-item-action flex-column align-items-start">
+                                            <div class="w-100 justify-content-between">
+                                                <img src="{{recent.featured_image.url}}" alt="" class="img-fluid float-left">
+                                                <h5 class="mb-1">{{recent.title}}</h5>
+                                                
+                                            </div>
+                                        </a>
+                                        {% endfor %}
+                                    </div>
+                                </div><!-- end blog-list -->
+                            </div><!-- end widget -->
+
+                        </div><!-- end sidebar -->
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section>
+
+{% endblock content %}
